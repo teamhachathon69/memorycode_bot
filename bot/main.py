@@ -67,6 +67,8 @@ def handle_attack(message: types.Message):
 
 def answer_question(que_message: types.Message):
     def wrapped(message: types.Message):
+        if message.text.startswith("/"):
+            return
         answers[message.chat.id][pagination[message.chat.id]] = (questions[pagination[message.chat.id]][0], message.text)
         pagination[message.chat.id] += 1
         try:
